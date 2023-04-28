@@ -8,14 +8,12 @@ properties([
 pipeline{
     agent any
   options {
-        // Define las bibliotecas compartidas para el entorno de Node.js
-        library('node-lib') when {
-            environment name: 'NODE_14', value: '14.18.0'
-        }
+      // Define las bibliotecas compartidas para el entorno de Node.js
+        library('node-lib') allowUndefinedParameters: true
+        environment name: 'NODE_14', value: '14.18.0'
         // Define las bibliotecas compartidas para el entorno de Java
-        library('java-lib') when {
-            environment name: 'JAVA_11', value: '11'
-        }
+        library('java-lib') allowUndefinedParameters: true
+        environment name: 'JAVA_11', value: '11'
     }
   
 
