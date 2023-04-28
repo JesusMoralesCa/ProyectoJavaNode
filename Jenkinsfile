@@ -6,6 +6,7 @@ properties([
 
 
 pipeline{
+    agent any
   options {
         // Define las bibliotecas compartidas para el entorno de Node.js
         library('node-lib') when {
