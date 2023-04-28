@@ -1,13 +1,12 @@
-properties([
-    pipelineTriggers([pollSCM('')]), 
-    [$class: 'FilePathJobProperty', 
-        filePath: 'project.properties']
-])
 
 
 pipeline{
     agent any
 
+    options{
+    githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
+}
+    
   stages {
       
        environment {
