@@ -13,7 +13,7 @@ pipeline {
                     def props = readProperties file: 'project.properties'
                     env.JAVA_LIBRARY = props['javaLibrary']
                     env.JAVAIMAGE = props['imageJava']
-                    env.NODE_LIBRARY = props['imageNode']
+                    env.NODE_LIBRARY = props['nodeLibrary']
                     
                 }
             }
