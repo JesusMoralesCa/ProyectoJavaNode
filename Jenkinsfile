@@ -40,7 +40,6 @@ pipeline {
                 script {
                      withEnv(["java=${envJava}"]) {
                         library 'java-lib'
-                         //library "${props['javaLibrary']}"
                         javaGrVars.test()
                     }
                 }
