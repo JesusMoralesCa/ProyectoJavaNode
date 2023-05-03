@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        java = properties('java.version=11')
+        node = properties('nodejs.version=14.18.0')
+    }
 
     options {
         githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
