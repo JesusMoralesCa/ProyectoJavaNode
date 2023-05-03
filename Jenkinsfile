@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def props = readProperties file: 'project.properties'
-                    env.javaLib = props['java.library']
+                    env.Java = props['java.library']
                 }
             }
         }
