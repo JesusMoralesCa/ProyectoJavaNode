@@ -25,7 +25,7 @@ pipeline {
                     withEnv(["java=${env.JAVA_VERSION}"]) {
                         library("${env.JAVA_LIBRARY}")
                         javaGrVars.test()
-                        javaGrVars.buidDjava()
+                        //javaGrVars.buidDjava()
                         
                     }
                 }
