@@ -7,10 +7,6 @@ pipeline {
     }
 
     
-    environment {
-        JAVA_VERSION = "11"
-        library 'java-lib'
-    }
     
     stages {
         
@@ -19,6 +15,7 @@ pipeline {
                 script {
                     def props = readProperties file: 'project.properties'
                     env.Java = props['java.library']
+                    echo "HOLA ${props['envJava']}"
                 }
             }
         }
@@ -42,7 +39,7 @@ pipeline {
             steps {
                 script {
                      withEnv(["java=${java}"]) {
-                      
+                        library 'java-lib'
                         javaGrVars.test()
                     }
                 }
