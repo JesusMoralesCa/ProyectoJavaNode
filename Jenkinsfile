@@ -32,7 +32,7 @@ pipeline {
                     }
                 }
             }
-        }
+        
 
         stage('Java stage') {
             steps {
@@ -55,6 +55,5 @@ pipeline {
                 }
             }
         }
-    
     }
 }
