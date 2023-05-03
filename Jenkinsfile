@@ -12,7 +12,8 @@ pipeline {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
                     def props = readProperties file: 'project.properties'
                     env.JAVA_LIBRARY = props['javaLibrary']
-                    env.NODE_LIBRARY = props['nodeLibrary']
+                    env.JAVAIMAGE = props['imageJava']
+                    env.NODE_LIBRARY = props['imageNode']
                     
                 }
             }
@@ -24,6 +25,7 @@ pipeline {
                     withEnv(["java=${env.JAVA_VERSION}"]) {
                         library("${env.JAVA_LIBRARY}")
                         javaGrVars.test()
+                        javaGrVars.buidDjava()
                     }
                 }
             }
