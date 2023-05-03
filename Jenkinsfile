@@ -6,6 +6,12 @@ pipeline {
         githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
     }
 
+    
+    environment {
+        JAVA_VERSION = "11"
+        library 'java-lib'
+    }
+    
     stages {
         
     stage('Read properties'){
@@ -31,16 +37,14 @@ pipeline {
         
         stage('Java stage') {
           
-            environment {
-                
-                CLASSPATH = library(env.Java)
-                //CLASSPATH  = library('node-lib')
-            }
+          
             
             steps {
                 script {
-                    
-                    javaGrVars.test()
+                     withEnv(["java=${java}"]) {
+                      
+                        javaGrVars.test()
+                    }
                 }
             }
         }
