@@ -12,7 +12,8 @@ pipeline {
         
         stage('Java stage') {
             environment {
-                CLASSPATH = "${project['java.library']}"
+                //CLASSPATH = "${project['java.library']}"
+                CLASSPATH = library('java-lib')
             }
             steps {
                 echo "${project['java.version']}"
@@ -21,7 +22,9 @@ pipeline {
         }
         stage('Node.js stage') {
             environment {
-                CLASSPATH = "${project['node.library']}"
+                //CLASSPATH = "${project['node.library']}"
+                CLASSPATH = library('node-lib')
+
             }
             steps {
                 nodeGrVars.test()
