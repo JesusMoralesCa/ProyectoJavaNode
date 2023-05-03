@@ -8,24 +8,19 @@ pipeline {
 
     stages {
         stage('Java stage') {
-            environment {
-                
-                //CLASSPATH = library('java-lib')
-                CLASSPATH = env.JAVA_CLASSPATH
-            }
+           
             steps {
                 script {
+                    load 'project.properties'
                     javaGrVars.test()
                 }
             }
         }
         stage('Node.js stage') {
-            environment {
-                
-                CLASSPATH  = library('node-lib')
-            }
+            
             steps {
                 script {
+                    load 'project.properties'
                     nodeGrVars.test()
                 }
             }
