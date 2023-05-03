@@ -9,10 +9,15 @@ pipeline {
     stages {
         
         stage('checkout') {
+            steps{
           checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-        }
+            }
+         }
         stage('Read properties'){
-            props = readProperties file: 'project.properties'
+            steps{
+                props = readProperties file: 'project.properties'
+            }
+           
         }
         
         
