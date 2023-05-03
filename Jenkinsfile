@@ -28,8 +28,7 @@ pipeline {
          stage('Read properties') {
             steps {
                 script {
-                    def props = readProperties file: 'project.properties'
-                    env.JAVA_LIBRARY = props['javaLibrary']
+                    
                     echo "HOLA ${props['javaLibrary']}"
                     
                     }
