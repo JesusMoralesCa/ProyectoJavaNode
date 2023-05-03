@@ -19,7 +19,7 @@ pipeline {
                 CLASSPATH = library('java-lib')
             }
             steps {
-                echo "${project['java.version']}"
+                
                 javaGrVars.test()
             }
         }
