@@ -15,6 +15,7 @@ pipeline {
                 CLASSPATH = "${project['java.library']}"
             }
             steps {
+                echo "${project['java.version']}"
                 javaGrVars.test()
             }
         }
