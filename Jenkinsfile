@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage('Java stage') {
             environment {
+                java
                 //JAVA_11 = properties('java.version=11')
                 CLASSPATH = library('java-lib')
                 
@@ -25,6 +26,7 @@ pipeline {
         }
         stage('Node.js stage') {
             environment {
+                node
                 CLASSPATH  = library('node-lib')
             }
             steps {
