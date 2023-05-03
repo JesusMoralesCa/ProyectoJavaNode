@@ -1,3 +1,6 @@
+def props = readProperties file: 'project.properties'
+env.JAVA_LIBRARY = props['javaLibrary']
+
 pipeline {
     agent any
 
