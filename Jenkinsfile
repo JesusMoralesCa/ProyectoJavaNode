@@ -31,7 +31,8 @@ pipeline {
         stage('Java stage') {
           
             environment {
-                CLASSPATH = "${project['java.library']}"
+                def javaLib = props['java.library']
+                CLASSPATH = library(javaLib)
                 //CLASSPATH  = library('node-lib')
             }
             
