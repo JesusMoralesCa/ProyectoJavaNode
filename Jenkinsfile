@@ -10,25 +10,19 @@ pipeline {
         JAVA_LIBRARY = ""
     }
 
-     script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    def props = readProperties file: 'project.properties'
-                    env.JAVA_LIBRARY = props['javaLibrary']
-                }
-    
-    
+    script {
+        def props = readProperties file: 'project.properties'
+        env.JAVA_LIBRARY = props['javaLibrary']
+    }
+
     stages {
-         
-         stage('Read properties') {
+        stage('checkout') {
             steps {
                 script {
-                    
-                    echo "HOLA ${props['javaLibrary']}"
-                    
-                    }
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
                 }
             }
-        
+        }
 
         stage('Java stage') {
             steps {
@@ -53,3 +47,4 @@ pipeline {
         }
     }
 }
+
