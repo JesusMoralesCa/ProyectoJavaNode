@@ -9,6 +9,10 @@ pipeline {
 
     stages{
         
+        stage('read'){
+        props = readProperties file: 'project.properties'
+        }
+        
         stage('Java stage') {
             environment {
                 CLASSPATH = "${['java.library']}"
