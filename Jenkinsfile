@@ -20,6 +20,13 @@ pipeline {
             }
         }
 
+        stage('checkout') {
+            steps {
+                script{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
+                }
+            }
+         }
         
         
         
@@ -31,7 +38,7 @@ pipeline {
             
             steps {
                 script {
-                     withEnv(["java=${envJava}"]) {
+                     withEnv(["java=${java}"]) {
                         library 'java-lib'
                         javaGrVars.test()
                     }
