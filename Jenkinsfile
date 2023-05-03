@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     environment {
-        java = properties('java.version=11')
-        node = properties('nodejs.version=14.18.0')
+        java = project.properties('java.version=11')
+        node = project.properties('nodejs.version=14.18.0')
     }
 
     options {
