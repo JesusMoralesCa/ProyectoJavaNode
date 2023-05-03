@@ -13,18 +13,15 @@ pipeline {
         JAVA_LIBRARY = ""
     }
 
-    stages {
-       
-        stage('checkout') {
-            steps {
-                script {
+     script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
+                    def props = readProperties file: 'project.properties'
+                    env.JAVA_LIBRARY = props['javaLibrary']
                 }
-            }
-        }
-        
-        
-        
+    
+    
+    stages {
+         
          stage('Read properties') {
             steps {
                 script {
