@@ -8,32 +8,26 @@ pipeline {
 
     stages {
         
-        stage('Download .properties file') {
-            steps {
-                script {
-                    
-                    sh 'curl -L -o project.properties https://github.com/JesusMoralesCa/ProyectoJavaNode/main/project.properties'
-                }
-            }
+        stage('checkout') {
+          checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
         }
-        
+        stage('Read properties'){
+            props = readProperties file: 'project.properties'
+        }
         
         
         
         
         stage('Java stage') {
           
+            environment {
+                CLASSPATH = "${project['java.library']}"
+                //CLASSPATH  = library('node-lib')
+            }
+            
             steps {
                 script {
                     
-                    def props = readProperties file: 'project.properties'
-                    def javaLib = props['java.library']
-                    def javaVersion = props['java.version']
-                    
-            environment {
-                CLASSPATH = library(javaLib)
-                JAVA_HOME = tool(javaVersion)
-            }
                     javaGrVars.test()
                 }
             }
