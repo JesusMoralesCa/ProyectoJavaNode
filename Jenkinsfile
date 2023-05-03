@@ -8,6 +8,12 @@ pipeline {
     environment {
         JAVA_VERSION = "11"
         JAVA_LIBRARY = ""
+        
+        script {
+            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
+            def props = readProperties file: 'project.properties'
+            env.JAVA_LIBRARY = props['javaLibrary']
+        }
     }
 
 
@@ -23,9 +29,6 @@ pipeline {
         stage('Java stage') {
             steps {
                 script {
-                        def props = readProperties file: 'project.properties'
-                        env.JAVA_LIBRARY = props['javaLibrary']
-                    
                     withEnv(["java=${JAVA_VERSION}"]) {
                         library("${JAVA_LIBRARY}")
                         javaGrVars.test()
