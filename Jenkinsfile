@@ -9,7 +9,10 @@ pipeline {
     stages {
         
         stage('Read properties file'){
-            props = readProperties file: 'project.properties'
+            steps{
+                props = readProperties file: 'project.properties'
+            }
+            
         }
         
         
