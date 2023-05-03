@@ -1,4 +1,4 @@
-def props;
+
 
 
 pipeline {
@@ -6,19 +6,12 @@ pipeline {
     options {
         githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
     }
-    stages {
-        
-        stage('Read properties file'){
-            steps{
-                props = readProperties file: 'project.properties'
-            }
-            
-        }
+
         
         
         stage('Java stage') {
             environment {
-                CLASSPATH = "${props['java.library']}"
+                CLASSPATH = "${['java.library']}"
             }
             steps {
                 javaGrVars.test()
@@ -26,7 +19,7 @@ pipeline {
         }
         stage('Node.js stage') {
             environment {
-                CLASSPATH = "${props['node.library']}"
+                CLASSPATH = "${['node.library']}"
             }
             steps {
                 nodeGrVars.test()
