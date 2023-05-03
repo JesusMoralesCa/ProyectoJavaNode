@@ -18,10 +18,10 @@ pipeline {
                     env.JAVA_LIBRARY = ${props['javaLibrary']
                     echo "HOLA ${props['javaLibrary']}"
                     
+                    }
                 }
             }
         }
-
         stage('checkout') {
             steps {
                 script {
@@ -51,6 +51,6 @@ pipeline {
                 }
             }
         }
+    
     }
-}
 }
