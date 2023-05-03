@@ -33,7 +33,7 @@ pipeline {
           
             environment {
                 
-                CLASSPATH = library(env.javaLib)
+                CLASSPATH = library(env.Java)
                 //CLASSPATH  = library('node-lib')
             }
             
