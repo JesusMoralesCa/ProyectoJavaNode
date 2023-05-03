@@ -8,6 +8,15 @@ pipeline {
 
     stages {
         
+    stage('Read properties'){
+            steps {
+                script {
+                    def props = readProperties file: 'project.properties'
+                    env.javaLib = props['java.library']
+                }
+            }
+        }
+
         stage('checkout') {
             steps {
                 script{
@@ -15,15 +24,7 @@ pipeline {
                 }
             }
          }
-        stage('Read properties'){
-            steps {
-                script{
-                def props = readProperties file: 'project.properties'
-                }
-                
-            }
-           
-        }
+        
         
         
         
@@ -31,8 +32,8 @@ pipeline {
         stage('Java stage') {
           
             environment {
-                def javaLib = props['java.library']
-                CLASSPATH = library(javaLib)
+                
+                CLASSPATH = library(env.javaLib)
                 //CLASSPATH  = library('node-lib')
             }
             
