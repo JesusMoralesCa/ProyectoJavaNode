@@ -9,13 +9,10 @@ pipeline {
 
     stages{
         
-        stage('read'){
-        props = readProperties file: 'project.properties'
-        }
         
         stage('Java stage') {
             environment {
-                CLASSPATH = "${['java.library']}"
+                CLASSPATH = "${project['java.library']}"
             }
             steps {
                 javaGrVars.test()
@@ -23,7 +20,7 @@ pipeline {
         }
         stage('Node.js stage') {
             environment {
-                CLASSPATH = "${['node.library']}"
+                CLASSPATH = "${project['node.library']}"
             }
             steps {
                 nodeGrVars.test()
