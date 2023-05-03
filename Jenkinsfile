@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Node.js stage') {
             environment {
-                PATH = library('node-lib')
+                CLASSPATH  = library('node-lib')
             }
             steps {
                 script {
