@@ -38,8 +38,9 @@ pipeline {
             
             steps {
                 script {
-                     withEnv(["java=${java}"]) {
-                        library 'java-lib'
+                     withEnv(["java=${envJava}"]) {
+                        //library 'java-lib'
+                         library "${props['javaLibrary']}"
                         javaGrVars.test()
                     }
                 }
