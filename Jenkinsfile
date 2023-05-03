@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Java stage') {
             environment {
-                CLASSPATH = JAVA_CLASSPATH
+                CLASSPATH = library('java-lib')
             }
             steps {
                 script {
