@@ -1,3 +1,11 @@
+def libraryVersion
+if (env.JAVA == 'JAVA') {
+    libraryVersion = project.getProperty('JAVA.java-lib')
+} else if (env.NODE == 'NODE') {
+    libraryVersion = project.getProperty('NODE.node-lib')
+} 
+
+
 pipeline {
     agent any
     
@@ -8,19 +16,24 @@ pipeline {
 
     stages {
         stage('Java stage') {
-           
+            environment {
+                JAVA = properties('JAVA')
+            }
             steps {
                 script {
-                    load 'project.properties'
+                    
                     javaGrVars.test()
                 }
             }
         }
         stage('Node.js stage') {
+              environment {
+                NODE = properties('NODE')
+            }
             
             steps {
                 script {
-                    load 'project.properties'
+                    
                     nodeGrVars.test()
                 }
             }
