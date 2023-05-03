@@ -11,7 +11,7 @@ pipeline {
             environment {
                 
                 //JAVA_11 = properties('java.version=11')
-                CLASSPATH = library('java-lib')
+                CLASSPATH = "${project['java.library']}"
                 
             }
             steps {
