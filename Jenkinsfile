@@ -12,6 +12,8 @@ pipeline {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
                     def props = readProperties file: 'project.properties'
                     env.JAVA_LIBRARY = props['javaLibrary']
+                    env.NODE_LIBRARY = props['nodeLibrary']
+                    
                 }
             }
         }
@@ -28,12 +30,13 @@ pipeline {
         }
 
         stage('Node.js stage') {
-            environment {
-                CLASSPATH  = library('node-lib')
-            }
             steps {
                 script {
-                    nodeGrVars.test()
+                    withEnv(["node=${env.NODE_VERSION}"]) {
+                        library("${env.NODE_LIBRARY}")
+                        nodeGrVars.test()
+                    }
+ 
                 }
             }
         }
