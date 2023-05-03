@@ -21,15 +21,18 @@ pipeline {
         
         
         stage('Java stage') {
-            environment {
-                
-                //JAVA_11 = properties('java.version=11')
-                //CLASSPATH = library('java-lib')
-                CLASSPATH = "${project['java.library']}"
-                
-            }
+          
             steps {
                 script {
+                    
+                    def props = readProperties file: 'project.properties'
+                    def javaLib = props['java.library']
+                    def javaVersion = props['java.version']
+                    
+            environment {
+                CLASSPATH = library(javaLib)
+                JAVA_HOME = tool(javaVersion)
+            }
                     javaGrVars.test()
                 }
             }
