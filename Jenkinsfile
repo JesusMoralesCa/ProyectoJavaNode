@@ -16,7 +16,7 @@ pipeline {
                 script {
                     def props = readProperties file: 'project.properties'
                     env.JAVA_LIBRARY = props['javaLibrary']
-                    echo "HOLA ${props['javaLibrary']}"
+                    //echo "HOLA ${props['javaLibrary']}"
                     echo "HOLA ${JAVA_LIBRARY}"
                 }
             }
