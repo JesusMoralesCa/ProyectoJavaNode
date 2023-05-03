@@ -9,7 +9,7 @@ pipeline{
     
   stages {
       
-       @environment {
+       environment {
         JAVA_11 = properties('java.version=11')
         NODE_14 = properties('nodejs.version=14.18.0')
     }
