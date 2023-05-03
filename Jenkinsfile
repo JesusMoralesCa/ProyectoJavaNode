@@ -10,10 +10,6 @@ pipeline {
         JAVA_LIBRARY = ""
     }
 
-    script {
-        def props = readProperties file: 'project.properties'
-        env.JAVA_LIBRARY = props['javaLibrary']
-    }
 
     stages {
         stage('checkout') {
@@ -27,6 +23,9 @@ pipeline {
         stage('Java stage') {
             steps {
                 script {
+                        def props = readProperties file: 'project.properties'
+                        env.JAVA_LIBRARY = props['javaLibrary']
+                    
                     withEnv(["java=${JAVA_VERSION}"]) {
                         library("${JAVA_LIBRARY}")
                         javaGrVars.test()
