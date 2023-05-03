@@ -5,23 +5,13 @@ pipeline {
         githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
     }
 
-    environment {
-        JAVA_VERSION = "11"
-        JAVA_LIBRARY = ""
-        
-        script {
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-            def props = readProperties file: 'project.properties'
-            env.JAVA_LIBRARY = props['javaLibrary']
-        }
-    }
-
-
-    stages {
-        stage('checkout') {
+   stages {
+        stage('Read properties and checkout') {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
+                    def props = readProperties file: 'project.properties'
+                    env.JAVA_LIBRARY = props['javaLibrary']
                 }
             }
         }
@@ -29,8 +19,8 @@ pipeline {
         stage('Java stage') {
             steps {
                 script {
-                    withEnv(["java=${JAVA_VERSION}"]) {
-                        library("${JAVA_LIBRARY}")
+                    withEnv(["java=${env.JAVA_VERSION}"]) {
+                        library("${env.JAVA_LIBRARY}")
                         javaGrVars.test()
                     }
                 }
