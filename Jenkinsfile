@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Java stage') {
             environment {
-                JAVA_11 = properties('java.version=11')
+                //JAVA_11 = properties('java.version=11')
                 CLASSPATH = library('java-lib')
                 
             }
