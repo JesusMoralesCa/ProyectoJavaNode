@@ -11,7 +11,8 @@ pipeline {
         stage('Download .properties file') {
             steps {
                 script {
-                    sh 'curl -L -o project.properties https://raw.githubusercontent.com/JesusMoralesCa/ProyectoJavaNode/main/project.properties'
+                    
+                    sh 'curl -L -o project.properties https://github.com/JesusMoralesCa/ProyectoJavaNode/main/project.properties'
                 }
             }
         }
