@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     withEnv(["java=${JAVA_VERSION}"]) {
-                        library "${JAVA_LIBRARY}"
+                        library"${JAVA_LIBRARY}"
                         javaGrVars.test()
                     }
                 }
