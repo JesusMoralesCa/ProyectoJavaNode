@@ -3,10 +3,7 @@ pipeline {
         label('master')
     }
     
-    options {
-        githubProjectProperty(displayName: 'java.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
-        githubProjectProperty(displayName: 'node.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
-    }
+   
 
    stages {
         stage('Read properties and checkout') {
