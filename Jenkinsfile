@@ -18,7 +18,7 @@ pipeline {
         stage('Java stage') {
             steps {
                 script {
-                    withEnv(["java=${env.JAVA_VERSION}"]) {
+                    withEnv("Java") {
                         library("java-lib")
                         javaGrVars.test()
                         javaGrVars.setProperties()
@@ -33,7 +33,7 @@ pipeline {
         stage('Node.js stage') {
             steps {
                 script {
-                    withEnv(["node=${env.NODE_VERSION}"]) {
+                    withEnv(["Node"]) {
                         library("${env.NODE_LIBRARY}")
                         nodeGrVars.test()
                     }
