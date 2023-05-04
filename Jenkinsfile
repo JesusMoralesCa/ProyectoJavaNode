@@ -14,34 +14,43 @@ pipeline {
             }
         }
 
-        stage('Java stage') {
+stage('Leer archivo') {
             steps {
                 script {
-                    withEnv(["Java=11"]) {
-                        library("java-lib")
-                        javaGrVars.test()
-                        javaGrVars.setProperties()
-                        javaGrVars.build()
-                        
-                        
+                    def file = readFile 'archivo'
+                    if (file.endsWith('.java')) {
+                                stage('Java stage') {
+                                    steps {
+                                        script {
+                                            withEnv(["Java=11"]) {
+                                                library("java-lib")
+                                                javaGrVars.test()
+                                                javaGrVars.setProperties()
+                                                javaGrVars.build()
+                                            }
+                                        }
+                                    }
+                                }
+
+                    } else if (file.endsWith('.js')) {
+                         stage('Node.js stage') {
+                            steps {
+                                script {
+                                    withEnv(["Node=14"]) {
+                                        library("node-lib")
+                                        nodeGrVars.test()
+                                        nodeGrVars.setProperties()
+                                        nodeGrVars.build()
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        error "Archivo con extensión desconocida: ${file}"
                     }
                 }
             }
         }
 
-        stage('Node.js stage') {
-            steps {
-                script {
-                    withEnv(["Node=14"]) {
-                        library("node-lib")
-                        nodeGrVars.test()
-                        nodeGrVars.setProperties()
-                        nodeGrVars.build()
-                    }
- 
-                }
-            }
-        }
     }
 }
-
