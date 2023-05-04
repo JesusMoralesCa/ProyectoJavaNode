@@ -18,39 +18,12 @@ pipeline {
 
 
 
-stage('Leer archivo') {
+stage('Build') {
             steps {
                 script {
-                    def file = readProperties file: 'project.properties'
-
-                    if (file['tecnology'] == 'java') {
-                                
-                                    
-                                        script {
-                                            withEnv(["Java=11"]) {
-                                                library("java-lib")
-                                                javaGrVars.test()
-                                               
-                                                javaGrVars.build()
-                                            }
-                                        }
-                                    
-                                
-
-                    } else if (file['tecnology'] == 'node') {
-                         
-                            
-                                script {
-                                    withEnv(["Node=14"]) {
-                                        library("node-lib")
-                                        nodeGrVars.test()
-                                        
+                    withEnv(["Node=14"]) {
                                         nodeGrVars.build()
-                                    }
-                                }
-                            
-                        
-                    } 
+                   }
                 }
             }
         }
