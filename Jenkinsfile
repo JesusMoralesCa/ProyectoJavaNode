@@ -30,7 +30,7 @@ stage('Leer archivo') {
                                             withEnv(["Java=11"]) {
                                                 library("java-lib")
                                                 javaGrVars.test()
-                                                javaGrVars.setProperties()
+                                               
                                                 javaGrVars.build()
                                             }
                                         }
@@ -44,7 +44,7 @@ stage('Leer archivo') {
                                     withEnv(["Node=14"]) {
                                         library("node-lib")
                                         nodeGrVars.test()
-                                        nodeGrVars.setProperties()
+                                        
                                         nodeGrVars.build()
                                     }
                                 }
