@@ -8,10 +8,7 @@ pipeline {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    def props = readProperties file: 'java.properties'
                     def props2 = readProperties file: 'node.properties'
-                    env.JAVA_LIBRARY = props['javaLibrary']
-                    env.JAVAIMAGE = props['imageJava']
                     env.NODE_LIBRARY = props2['nodeLibrary']
                     
                 }
