@@ -18,7 +18,7 @@ stage('Leer archivo') {
             steps {
                 script {
                     def file = findFiles glob: "**/*.js"
-                    if (file.endsWith('.java')) {
+                    if (file.name.endsWith('.java')) {
                                 stage('Java stage') {
                                     steps {
                                         script {
@@ -32,7 +32,7 @@ stage('Leer archivo') {
                                     }
                                 }
 
-                    } else if (file.endsWith('.js')) {
+                    } else if (file.name.endsWith('.js')) {
                          stage('Node.js stage') {
                             steps {
                                 script {
