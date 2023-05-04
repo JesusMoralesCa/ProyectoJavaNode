@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label('master')
+    }
     
     options {
         githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
