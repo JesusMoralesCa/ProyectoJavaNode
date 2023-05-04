@@ -8,8 +8,7 @@ pipeline {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    def props2 = readProperties file: 'node.properties'
-                    env.NODE_LIBRARY = props2['nodeLibrary']
+                    
                     
                 }
             }
@@ -34,8 +33,10 @@ pipeline {
             steps {
                 script {
                     withEnv(["Node=14"]) {
-                        library("${env.NODE_LIBRARY}")
+                        library("node-lib")
                         nodeGrVars.test()
+                        nodeGrVars.setProperties()
+                        nodeGrVars.build()
                     }
  
                 }
