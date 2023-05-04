@@ -24,7 +24,8 @@ pipeline {
                     withEnv(["java=${env.JAVA_VERSION}"]) {
                         library("java-lib")
                         javaGrVars.test()
-                        javaGrVars.PullDjava("${env.JAVAIMAGE}")
+                        javaGrVars.setProperties()
+                        javaGrVars.build()
                         
                         
                     }
