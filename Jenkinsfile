@@ -25,7 +25,7 @@ pipeline {
                         library("java-lib")
                         javaGrVars.test()
                         javaGrVars.PullDjava("${env.JAVAIMAGE}")
-                        javaGrVars.buildDjava("${env.JAVAIMAGE}")
+                        
                         
                     }
                 }
