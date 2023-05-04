@@ -22,7 +22,7 @@ stage('Leer archivo') {
             steps {
                 script {
                     def file = readProperties file: 'project.properties'
-                    
+
                     if (file['tecnology'] == 'java') {
                                 stage('Java stage') {
                                     steps {
@@ -50,12 +50,9 @@ stage('Leer archivo') {
                                 }
                             }
                         }
-                    } else {
-                        error "Archivo con extensión desconocida: ${file}"
-                    }
+                    } 
                 }
             }
         }
-
     }
 }
