@@ -14,11 +14,16 @@ pipeline {
             }
         }
 
+
+
+
+
 stage('Leer archivo') {
             steps {
                 script {
-                    def file = findFiles glob: "**/*.js"
-                    if (file.name.toString.endsWith('.java')) {
+                    def file = readProperties file: 'project.properties'
+                    
+                    if (file['tecnology'] == 'java') {
                                 stage('Java stage') {
                                     steps {
                                         script {
@@ -32,7 +37,7 @@ stage('Leer archivo') {
                                     }
                                 }
 
-                    } else if (file.name.toString.endsWith('.js')) {
+                    } else if (file['tecnology'] == 'node') {
                          stage('Node.js stage') {
                             steps {
                                 script {
