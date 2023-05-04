@@ -22,7 +22,8 @@ stage('Build') {
             steps {
                 script {
                     withEnv(["Node=14"]) {
-                                        nodeGrVars.build()
+                            library("node-lib")
+                            nodeGrVars.build()
                    }
                 }
             }
