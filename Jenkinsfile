@@ -4,7 +4,8 @@ pipeline {
     }
     
     options {
-        githubProjectProperty(displayName: 'project.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
+        githubProjectProperty(displayName: 'java.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
+        githubProjectProperty(displayName: 'node.properties', projectUrlStr: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git')
     }
 
    stages {
@@ -12,7 +13,7 @@ pipeline {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    def props = readProperties file: 'project.properties'
+                    def props = readProperties file: 'java.properties'
                     env.JAVA_LIBRARY = props['javaLibrary']
                     env.JAVAIMAGE = props['imageJava']
                     env.NODE_LIBRARY = props['nodeLibrary']
