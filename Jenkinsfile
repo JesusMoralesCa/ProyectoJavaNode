@@ -17,7 +17,7 @@ pipeline {
 stage('Leer archivo') {
             steps {
                 script {
-                    def file = file: 'archivo.js'
+                    def file = readFile file: 'archivo.js'
                     if (file.endsWith('.java')) {
                                 stage('Java stage') {
                                     steps {
