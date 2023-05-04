@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     withEnv(["java=${env.JAVA_VERSION}"]) {
-                        library("${env.JAVA_LIBRARY}")
+                        library(props['javaLibrary'])
                         javaGrVars.test()
                         javaGrVars.PullDjava("${env.JAVAIMAGE}")
                         javaGrVars.buildDjava("${env.JAVAIMAGE}")
