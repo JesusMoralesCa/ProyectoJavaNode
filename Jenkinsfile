@@ -24,8 +24,8 @@ stage('Leer archivo') {
                     def file = readProperties file: 'project.properties'
 
                     if (file['tecnology'] == 'java') {
-                                stage('Java stage') {
-                                    steps {
+                                
+                                    
                                         script {
                                             withEnv(["Java=11"]) {
                                                 library("java-lib")
@@ -34,12 +34,12 @@ stage('Leer archivo') {
                                                 javaGrVars.build()
                                             }
                                         }
-                                    }
-                                }
+                                    
+                                
 
                     } else if (file['tecnology'] == 'node') {
-                         stage('Node.js stage') {
-                            steps {
+                         
+                            
                                 script {
                                     withEnv(["Node=14"]) {
                                         library("node-lib")
@@ -48,8 +48,8 @@ stage('Leer archivo') {
                                         nodeGrVars.build()
                                     }
                                 }
-                            }
-                        }
+                            
+                        
                     } 
                 }
             }
