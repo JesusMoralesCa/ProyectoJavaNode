@@ -22,6 +22,7 @@ stage('Build') {
             steps {
                 script {
                     withEnv(["PATH+NODE=${tool 'Node'}"]) {
+                            credentials('docker-hub-jesusmoralesc')
                             library("node-lib")
                             nodeGrVars.build()
                    }
