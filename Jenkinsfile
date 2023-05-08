@@ -21,7 +21,7 @@ pipeline {
 stage('Build') {
             steps {
                 script {
-                    withEnv(["Node"]) {
+                    withEnv(["PATH+NODE=${tool 'Node'}"]) {
                             library("node-lib")
                             nodeGrVars.build()
                    }
