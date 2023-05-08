@@ -3,6 +3,10 @@ pipeline {
         label('master')
     }
     
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
+    }
+    
    stages {
         stage('Read properties and checkout') {
             steps {
