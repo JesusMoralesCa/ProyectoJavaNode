@@ -30,4 +30,12 @@ stage('Build') {
             }
         }
     }
+    
+    post {
+        always {
+            sh 'docker logout'
+        }
+    }
+}
+
 }
