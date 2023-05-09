@@ -1,8 +1,12 @@
+@Library('java-node')
 pipeline {
     agent {
         label('master')
     }
-    
+    tools {
+        maven 'maven'
+        node 'Node'
+    }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
         
@@ -20,18 +24,10 @@ pipeline {
             }
         }
 
-
-
-
-
 stage('Build') {
             steps {
                 script {
-                    withEnv(["PATH+NODE=${tool 'maven'}"]) {
-                            library("java-node")
-                            W2Build()
-                            
-                   }
+                  W2Build()
                 }
             }
         }
