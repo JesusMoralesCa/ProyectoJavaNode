@@ -13,7 +13,8 @@ pipeline {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    
+                    file = readProperties file: 'project.properties'
+                    image = file['imageName']
                     
                 }
             }
@@ -28,8 +29,6 @@ stage('Build') {
                 script {
                     withEnv(["PATH+NODE=${tool 'maven'}"]) {
                             library("java-node")
-                            file = readProperties file: 'project.properties'
-                            image = file['imageName']
                             W2Build()
                             
                    }
