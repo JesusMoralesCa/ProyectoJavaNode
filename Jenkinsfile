@@ -5,8 +5,7 @@ pipeline {
     
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
-        file = readProperties file: 'project.properties'
-        image = file['imageName']
+        
     }
     
    stages {
@@ -29,6 +28,8 @@ stage('Build') {
                 script {
                     withEnv(["PATH+NODE=${tool 'maven'}"]) {
                             library("java-node")
+                            file = readProperties file: 'project.properties'
+                            image = file['imageName']
                             W2Build()
                             
                    }
