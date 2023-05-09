@@ -5,7 +5,7 @@ pipeline {
     }
     tools {
         maven 'maven'
-        node 'Node'
+        nodejs 'Node'
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
