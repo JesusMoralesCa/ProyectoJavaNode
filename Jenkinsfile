@@ -13,8 +13,8 @@ pipeline {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JesusMoralesCa/ProyectoJavaNode.git']])
-                    file = readProperties file: 'project.properties'
-                    image = file['imageName']
+                    def file = readProperties file: 'project.properties'
+                    env.image = file['imageName']
                     
                 }
             }
