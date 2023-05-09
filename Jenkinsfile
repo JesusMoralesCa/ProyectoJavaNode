@@ -29,7 +29,7 @@ stage('Build') {
                             //DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
                             library("java-node")
                             W2Build()
-                            //nodeGrVars.build()
+                            
                    }
                 }
             }
