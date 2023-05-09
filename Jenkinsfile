@@ -26,7 +26,6 @@ stage('Build') {
             steps {
                 script {
                     withEnv(["PATH+NODE=${tool 'maven'}"]) {
-                            //DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
                             library("java-node")
                             W2Build()
                             
