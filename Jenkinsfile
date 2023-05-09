@@ -1,4 +1,4 @@
-@Library('java-node')
+@Library('java-node') _
 pipeline {
     agent {
         label('master')
