@@ -5,7 +5,8 @@ pipeline {
     
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-jesusmoralesc')
-        image = readProperties file: 'project.properties'
+        file = readProperties file: 'project.properties'
+        image = file['imageName']
     }
     
    stages {
